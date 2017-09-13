@@ -1093,17 +1093,15 @@ public class StickyListHeadersListView extends FrameLayout {
 
     @Override
     public Parcelable onSaveInstanceState() {
-        Parcelable superState = super.onSaveInstanceState();
-        if (superState != BaseSavedState.EMPTY_STATE) {
-          throw new IllegalStateException("Handling non empty state of parent class is not implemented");
-        }
-        return mList.onSaveInstanceState();
+        return new SavedStickyHeaderState(super.onSaveInstanceState(), mList.onSaveInstanceState());
     }
 
     @Override
     public void onRestoreInstanceState(Parcelable state) {
-        super.onRestoreInstanceState(BaseSavedState.EMPTY_STATE);
-        mList.onRestoreInstanceState(state);
+        if (state instanceof SavedStickyHeaderState) {
+            super.onRestoreInstanceState(((SavedStickyHeaderState) state).getSuperState());
+            mList.onRestoreInstanceState(((SavedStickyHeaderState) state).getListState());
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
