@@ -12,11 +12,8 @@ android {
         }
     }
     defaultConfig {
-        minSdkVersion 7
+        minSdkVersion 14
         targetSdkVersion 31
-    }
-    lintOptions {
-        abortOnError false
     }
 }
 

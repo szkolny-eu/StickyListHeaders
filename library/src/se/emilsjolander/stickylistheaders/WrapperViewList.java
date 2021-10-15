@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -26,6 +27,7 @@ class WrapperViewList extends ListView {
 	private boolean mClippingToPadding = true;
     private boolean mBlockLayoutChildren = false;
 
+	@SuppressLint("SoonBlockedPrivateApi")
 	public WrapperViewList(Context context) {
 		super(context);
 
@@ -36,10 +38,8 @@ class WrapperViewList extends ListView {
 			selectorRectField.setAccessible(true);
 			mSelectorRect = (Rect) selectorRectField.get(this);
 
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-				mSelectorPositionField = AbsListView.class.getDeclaredField("mSelectorPosition");
-				mSelectorPositionField.setAccessible(true);
-			}
+			mSelectorPositionField = AbsListView.class.getDeclaredField("mSelectorPosition");
+			mSelectorPositionField.setAccessible(true);
 		} catch (NoSuchFieldException e) {
 			e.printStackTrace();
 		} catch (IllegalArgumentException e) {
