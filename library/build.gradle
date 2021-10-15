@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 22
-    buildToolsVersion '25.0.2'
 
     sourceSets {
         main {
@@ -11,6 +10,8 @@ android {
             res.srcDirs = ['res']
         }
     }
+    defaultConfig {
+        minSdkVersion 7
+        targetSdkVersion 22
+    }
 }
-
-apply from: 'gradle-mvn-push.gradle'
