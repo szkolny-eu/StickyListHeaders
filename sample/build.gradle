@@ -12,12 +12,12 @@ dependencies {
 }
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId 'se.emilsjolander.stickylistheaders'
         minSdkVersion 7
-        targetSdkVersion 22
+        targetSdkVersion 31
     }
 
     sourceSets {
